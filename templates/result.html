@@ -1,0 +1,13 @@
+{% extends 'template.html'%}
+{% block head %}{% endblock %}
+{% block body %}
+    <div class="container d-flex align-items-center justify-content-center">
+        <h2 class="m-3" style="text-align:center;">slow motion video for your file is 
+            <form action="/download" method="post"><button class="btn btn-link" type="submit" name="video" value={{result}}><h2>{{result}}</h2></button></form>
+        </h2>
+    </div>
+    <br><br>
+    <div class="container d-flex align-items-center justify-content-center">
+       <a class="btn btn-secondary" href="{{ url_for('home') }}" style="color: white;">Back</a>
+    </div>
+{% endblock %}

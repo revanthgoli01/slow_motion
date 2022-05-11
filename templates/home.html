@@ -1,0 +1,29 @@
+{% extends 'template.html'%}
+{% block head %}{% endblock %}
+{% block body %}
+    <div class="container align-items-center justify-content-center">
+        <div class="card mt-4 p-4">
+            <form action = "/upload" method = "POST" style="text-align:center" enctype = "multipart/form-data">
+                <div class="mb-3 form-group">
+                    <label for="formFile" class="form-label">Upload Video</label>
+                    <input class="form-control" name="file" type="file" id="formFile" accept=".mp4" required="true">
+                </div>
+                <button class="btn btn-primary" type="submit">Upload</button>
+            </form>
+        </div>
+        <h4 class="text-center m-4">OR</h4>
+        <div class="card mt-4 p-4">
+            <form action = "/load" method = "POST" style="text-align:center" enctype = "multipart/form-data">
+                <div class="mb-3 form-group">
+                    <label for="des" class="form-label">Select Video</label>
+                    <select class="form-control" name="des">
+                        {% for r in results :%}
+                        <option value = '{{r.name}}'>{{r.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Load</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

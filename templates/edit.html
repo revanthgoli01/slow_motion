@@ -1,0 +1,19 @@
+{% extends 'template.html'%}
+{% block head %}{% endblock %}
+{% block body %}
+<div class="container align-items-center justify-content-center">
+    <div class="card mt-4 p-4">
+        <form action = "/loadvideo" method = "POST" style="text-align:center" enctype = "multipart/form-data">
+            <div class="mb-3 form-group">
+                <label for="des" class="form-label">Select Video</label>
+                <select class="form-control" name="des">
+                    {% for r in results :%}
+                    <option value = '{{r.name}}'>{{r.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-primary" type="submit">Edit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

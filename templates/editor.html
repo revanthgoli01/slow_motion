@@ -1,0 +1,54 @@
+{% extends 'template.html'%}
+{% block head %}
+{% endblock %}
+{% block body %}
+    <div class="container d-flex align-items-center justify-content-center mt-4 ">
+        <div class="card" style="max-width: 70%;">
+            <div class="card" style="cursor: pointer;" onclick="change()">
+                <img id="image" class="card-img-top" style="min-width:100%;" src="{{ url_for('editvideo') }}" alt="please load the video again">
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <img id="play" src="static/play.png">
+                </div>
+            </div>
+            <div class="card-body row">
+                <div class="col d-flex"><button id="prev" class="btn btn-primary">Prev</button>&nbsp;
+                <button id="next" class="btn btn-primary">Next</button></div>
+                <div class="col d-flex"><input id="num" class="form-control" type="number" name="frameno" placeholder="enter frame number"><button id="ok" class="btn btn-secondary">OK</button></div>
+                <div class="col" style="text-align: right;"><button id="delete" class="btn btn-danger">Delete</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex align-items-center justify-content-center mt-4 ">
+        <a class="btn btn-success" href="{{ url_for('savevideo') }}">Save Video</a>
+    </div>
+    <script>
+        $("#prev").click(function(e) {
+            $.ajax({url: '/prev'});
+        });
+        $("#next").click(function(e) {
+            $.ajax({url: '/next'});
+        });
+        $("#delete").click(function(e) {
+            $.ajax({url: '/delete'});
+        });
+        $("#ok").click(function(e){
+            var number = $("#num").val(); 
+            if(number!='' && number>0){
+                $.ajax({
+                    url: '/frame',
+                    type: 'POST',
+                    data: {'number': number}
+                })
+            }
+        });
+        function change(){
+            var click = document.getElementById("play");
+            if(click.style.display == 'none'){
+                click.style.display = 'block';
+            }else{
+                click.style.display = 'none';
+            }
+            $.ajax({url: '/play'});
+        }
+    </script>
+{% endblock %}
